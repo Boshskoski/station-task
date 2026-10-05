@@ -1,0 +1,9 @@
+<ion-toast
+  position="bottom"
+  color="dark"
+  [isOpen]="locationStore.error() !== undefined"
+  [message]="locationStore.error() | locationErrorMessage"
+  [duration]="duration"
+  [buttons]="buttons"
+  (didDismiss)="locationStore.dismissError()"
+/>

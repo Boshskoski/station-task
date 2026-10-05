@@ -1,0 +1,33 @@
+@switch (stationsStatus()) {
+  @case ('loading')
+  @case ('reloading') {
+    <div class="map-status__card">
+      <ion-spinner name="crescent" aria-hidden="true" />
+      <span>Loading stations…</span>
+    </div>
+  }
+  @case ('error') {
+    <div class="map-status__card" role="alert">
+      <ion-text color="danger">Could not load stations.</ion-text>
+      <ion-button size="small" fill="clear" (click)="retry.emit()">Retry</ion-button>
+    </div>
+  }
+  @case ('resolved') {
+    @if (stationCount() === 0) {
+      <div class="map-status__card">No stations to show.</div>
+    } @else if (matchCount() === 0) {
+      <div class="map-status__card">
+        <span>No stations match the filters.</span>
+        <ion-button size="small" fill="clear" (click)="clearFilters.emit()">
+          Clear filters
+        </ion-button>
+      </div>
+    }
+  }
+}
+@if (detailsLoading()) {
+  <div class="map-status__card">
+    <ion-spinner name="crescent" aria-hidden="true" />
+    <span>Loading station details…</span>
+  </div>
+}

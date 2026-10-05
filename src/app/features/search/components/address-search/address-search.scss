@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+ion-searchbar {
+  --background: color-mix(in srgb, var(--ion-text-color) 8%, transparent);
+  --border-radius: 0.625rem;
+  --box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ion-text-color) 22%, transparent);
+  padding: 0.25rem 0.75rem 0.5rem;
+}
+
+ion-searchbar.searchbar-has-focus {
+  --box-shadow: inset 0 0 0 2px var(--ion-color-primary);
+}
+
+:host(.address-search--compact) ion-searchbar {
+  padding: 0;
+}

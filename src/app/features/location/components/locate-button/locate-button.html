@@ -1,0 +1,17 @@
+<ion-fab vertical="top" horizontal="end">
+  <ion-fab-button
+    class="locate-button"
+    size="small"
+    aria-label="Show my location"
+    [color]="color()"
+    [disabled]="locationStore.locating()"
+    [attr.aria-busy]="locationStore.locating()"
+    (click)="locationStore.locate()"
+  >
+    @if (locationStore.locating()) {
+      <ion-spinner name="crescent" aria-hidden="true" />
+    } @else {
+      <ion-icon name="locate" aria-hidden="true" />
+    }
+  </ion-fab-button>
+</ion-fab>

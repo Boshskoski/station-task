@@ -1,0 +1,18 @@
+:host {
+  position: absolute;
+  inset: var(--side-panel-margin) auto var(--side-panel-margin) var(--side-panel-margin);
+  width: min(var(--side-panel-width), calc(100% - 2 * var(--side-panel-margin)));
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.side-panel {
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  border-radius: 1rem;
+  background: var(--ion-background-color, #fff);
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.25);
+  pointer-events: auto;
+}

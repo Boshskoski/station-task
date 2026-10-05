@@ -1,0 +1,27 @@
+@let station = view().station;
+
+<app-station-details-actions
+  [favorite]="stationFavorite()"
+  (favoriteToggled)="toggleStation()"
+  (closed)="closed.emit()"
+/>
+<app-station-details-header [station]="station" />
+
+@if (view().status === 'error') {
+  <app-station-details-notice (retry)="retry.emit()" />
+}
+
+<app-station-details-availability [station]="station" />
+
+@if (view().details; as details) {
+  <app-station-details-pricing [pricing]="details.pricing" />
+  <app-station-details-charge-points
+    [chargePoints]="details.chargingPoints"
+    [favoriteIds]="favoriteChargePointIds()"
+    (favoriteToggled)="toggleChargePoint($event)"
+  />
+  <app-station-details-support
+    [support]="details.support"
+    [ownerName]="details.ownedByCompanyName"
+  />
+}

@@ -1,0 +1,28 @@
+ion-popover {
+  --width: min(30rem, calc(100vw - 2rem));
+}
+
+ion-popover::part(content) {
+  overflow-y: auto;
+}
+
+.results__message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.25rem 1rem;
+}
+
+.results__message ion-spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+ion-list {
+  padding: 0;
+}
+
+ion-label p {
+  white-space: normal;
+}

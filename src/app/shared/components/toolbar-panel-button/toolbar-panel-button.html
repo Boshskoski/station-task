@@ -1,0 +1,26 @@
+<ion-button
+  class="toolbar-panel-button"
+  aria-haspopup="dialog"
+  [id]="triggerId()"
+  [class.toolbar-panel-button--icon-only]="!viewport.isWide()"
+  [attr.aria-expanded]="expanded()"
+  [attr.aria-label]="ariaLabel()"
+  (click)="pressed.emit()"
+>
+  @if (viewport.isWide()) {
+    <ion-icon slot="start" aria-hidden="true" [name]="icon()" />
+    {{ label() }}
+    <ion-icon
+      slot="end"
+      name="chevron-down"
+      class="toolbar-panel-button__chevron"
+      [class.toolbar-panel-button__chevron--open]="expanded()"
+      aria-hidden="true"
+    />
+  } @else {
+    <ion-icon slot="icon-only" aria-hidden="true" [name]="icon()" />
+  }
+  @if (count() > 0) {
+    <ion-badge aria-hidden="true" [color]="badgeColor()">{{ count() }}</ion-badge>
+  }
+</ion-button>

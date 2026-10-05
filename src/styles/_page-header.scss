@@ -1,0 +1,9 @@
+// Global because pages project their own extra toolbars into the header, outside its style scope.
+app-page-header ion-toolbar {
+  --border-width: 0 0 1px;
+  --border-color: color-mix(in srgb, var(--ion-text-color) 25%, transparent);
+}
+
+.ion-palette-dark app-page-header ion-toolbar {
+  --border-color: #e0e0e0;
+}

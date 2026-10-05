@@ -1,0 +1,34 @@
+<mgl-map
+  class="station-map"
+  role="region"
+  aria-label="Charging stations map"
+  [mapStyle]="mapStyle"
+  [center]="config.center"
+  [zoom]="config.zoom"
+  [minZoom]="config.minZoom"
+  [maxZoom]="config.maxZoom"
+  [zoomSnap]="config.zoomSnap"
+  [fadeDuration]="config.fadeDuration"
+  [fitBounds]="initialBounds()"
+  [fitBoundsOptions]="fitBoundsOptions"
+  [dragRotate]="false"
+  [pitchWithRotate]="false"
+  (mapLoad)="onMapLoad($event)"
+  (mapClick)="onMapClick($event)"
+  (zoomStart)="closeSpider()"
+  (zoomEnd)="snapZoom($event)"
+>
+  <!-- Stations are sent as updateData diffs by StationSourceService, never as a whole collection. -->
+  <mgl-geojson-source
+    [id]="config.stationsSourceId"
+    [data]="noFeatures"
+    [cluster]="true"
+    [clusterRadius]="config.clusterRadius"
+    [clusterMaxZoom]="config.maxZoom"
+    [maxzoom]="config.sourceMaxZoom"
+  />
+  <mgl-geojson-source [id]="config.spiderSourceId" [data]="spider()" />
+  <mgl-geojson-source [id]="config.searchSourceId" [data]="searchFeatures()" />
+  <mgl-geojson-source [id]="config.userLocationSourceId" [data]="userLocationFeatures()" />
+  <mgl-control mglNavigation position="bottom-right" [showCompass]="false" />
+</mgl-map>

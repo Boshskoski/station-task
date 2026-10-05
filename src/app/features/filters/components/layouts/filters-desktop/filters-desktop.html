@@ -1,0 +1,34 @@
+<ion-popover
+  appNonModal
+  aria-labelledby="filters-title"
+  side="bottom"
+  alignment="end"
+  [trigger]="triggerId"
+  [isOpen]="open()"
+  (didDismiss)="open.set(false)"
+>
+  <ng-template>
+    <app-filters-header>
+      <ion-button class="filters-close" aria-label="Close filters" (click)="open.set(false)">
+        <ion-icon slot="icon-only" name="close" aria-hidden="true" />
+      </ion-button>
+    </app-filters-header>
+
+    <ion-content>
+      <app-filters-content />
+    </ion-content>
+
+    <ion-footer>
+      <ion-toolbar>
+        <p class="filters-count" aria-live="polite">
+          @if (matchCount() === 0) {
+            No stations match
+          } @else {
+            {{ matchCount() | number }} of
+            {{ stationsStore.stations().length | plural: 'station' }} shown
+          }
+        </p>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-popover>

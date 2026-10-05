@@ -1,0 +1,24 @@
+<ion-item
+  detail="false"
+  [class.favorite-row--connector]="connector()"
+  [class.favorite-row--missing]="!clickable()"
+  [button]="clickable()"
+  (click)="selected.emit()"
+>
+  @if (connector()) {
+    <ion-icon slot="start" name="flash" aria-hidden="true" />
+  }
+  <div class="favorite-row__text">
+    <span class="favorite-row__title">{{ title() }}</span>
+    <span class="favorite-row__meta"><ng-content /></span>
+  </div>
+  <ion-button
+    slot="end"
+    fill="clear"
+    color="danger"
+    [attr.aria-label]="title() | favoriteLabel: true"
+    (click)="removed.emit(); $event.stopPropagation()"
+  >
+    <ion-icon slot="icon-only" name="heart" aria-hidden="true" />
+  </ion-button>
+</ion-item>

@@ -1,0 +1,49 @@
+<ion-popover
+  appNonModal
+  aria-label="Address search results"
+  side="bottom"
+  alignment="start"
+  [style.--max-height.px]="maxHeight()"
+  [trigger]="triggerId"
+  [isOpen]="searchStore.panelOpen()"
+  [keyboardClose]="false"
+  (willPresent)="prepare()"
+  (didDismiss)="searchStore.closePanel()"
+>
+  <ng-template>
+    <div class="results" aria-live="polite">
+      @switch (searchStore.status()) {
+        @case ('loading')
+        @case ('reloading') {
+          <div class="results__message">
+            <ion-spinner name="crescent" aria-hidden="true" />
+            <span>Searching…</span>
+          </div>
+        }
+        @case ('error') {
+          <div class="results__message" role="alert">
+            <span>Could not search addresses.</span>
+            <ion-button size="small" fill="clear" (click)="searchStore.retry()">Retry</ion-button>
+          </div>
+        }
+        @case ('resolved') {
+          @if (searchStore.results().length === 0) {
+            <div class="results__message">No address found.</div>
+          } @else {
+            <ion-list lines="full">
+              @for (place of searchStore.results(); track place.placeId) {
+                <ion-item button detail="false" (click)="searchStore.select(place)">
+                  <ion-icon slot="start" name="location-outline" aria-hidden="true" />
+                  <ion-label>
+                    <h3>{{ place.name || place.displayName }}</h3>
+                    <p>{{ place.displayName }}</p>
+                  </ion-label>
+                </ion-item>
+              }
+            </ion-list>
+          }
+        }
+      }
+    </div>
+  </ng-template>
+</ion-popover>

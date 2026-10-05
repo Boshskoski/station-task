@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.favorite-row__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 0.5rem 0;
+}
+
+.favorite-row__title {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.favorite-row__meta {
+  color: var(--ion-color-medium);
+  font-size: 0.875rem;
+}
+
+.favorite-row--missing:not(.favorite-row--connector) .favorite-row__title {
+  color: var(--ion-color-medium);
+}
+
+.favorite-row--connector {
+  --padding-start: 2rem;
+
+  ion-icon[slot='start'] {
+    margin-inline-end: 0.75rem;
+    color: var(--ion-color-success);
+  }
+}

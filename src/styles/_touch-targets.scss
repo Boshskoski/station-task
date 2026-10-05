@@ -1,0 +1,13 @@
+// Larger touch targets on touch screens of any width, in rem so they follow the font size.
+@media (pointer: coarse) {
+  ion-button:not(.in-toolbar) {
+    height: 2.75rem;
+    min-width: 2.75rem;
+  }
+
+  // Ionic sets 40px literally on small fab buttons, so --size cannot enlarge them.
+  ion-fab-button.fab-button-small {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}

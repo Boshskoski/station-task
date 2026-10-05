@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>EV Charging Stations</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="description"
+      content="Find EV charging stations, connector availability and favourites on a map."
+    />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script>
+      {
+        let theme = null;
+        try {
+          theme = JSON.parse(localStorage.getItem('stations.theme.v1'));
+        } catch (error) {
+          console.error('Could not read the saved theme', error);
+        }
+        const dark = theme !== 'light';
+        document.documentElement.classList.toggle('ion-palette-dark', dark);
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+      }
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>

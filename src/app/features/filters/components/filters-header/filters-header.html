@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title id="filters-title">Filters</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        class="filters-clear"
+        [disabled]="filtersStore.activeFilterCount() === 0"
+        (click)="filtersStore.clearFilters()"
+      >
+        Clear all
+      </ion-button>
+      <ng-content />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

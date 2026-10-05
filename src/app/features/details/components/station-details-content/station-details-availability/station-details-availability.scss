@@ -1,0 +1,42 @@
+@use '../section-base';
+
+@include section-base.apply;
+
+.counters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.counter {
+  padding: 0.5rem;
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, var(--ion-text-color) 7%, transparent);
+  text-align: center;
+
+  dt {
+    color: var(--ion-color-medium);
+    font-size: 0.75rem;
+  }
+
+  dd {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+}
+
+.counter--available dd {
+  color: var(--ion-color-success);
+}
+
+.connectors {
+  margin-top: 0.5rem;
+  list-style: none;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.25rem 0;
+  }
+}

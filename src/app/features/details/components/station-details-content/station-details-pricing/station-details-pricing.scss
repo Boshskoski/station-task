@@ -1,0 +1,7 @@
+@use '../section-base';
+
+@include section-base.apply;
+
+.pricing {
+  font-size: 1.05rem;
+}

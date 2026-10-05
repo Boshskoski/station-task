@@ -1,0 +1,41 @@
+<section aria-labelledby="support-heading">
+  <h3 id="support-heading">Support</h3>
+  <p class="muted">Owned by {{ ownerName() }}</p>
+  <div class="support-links">
+    <ion-button fill="outline" size="small" expand="block" [href]="support().phoneNumber | telHref">
+      <ion-icon slot="start" name="call" aria-hidden="true" />
+      {{ support().phoneNumber }}
+    </ion-button>
+    <ion-button
+      fill="outline"
+      size="small"
+      expand="block"
+      [href]="support().supportEmail | mailtoHref"
+    >
+      <ion-icon slot="start" name="mail" aria-hidden="true" />
+      {{ support().supportEmail }}
+    </ion-button>
+    <ion-button
+      fill="outline"
+      size="small"
+      expand="block"
+      target="_blank"
+      rel="noopener noreferrer"
+      [href]="support().supportWebsite"
+    >
+      <ion-icon slot="start" name="globe" aria-hidden="true" />
+      Website
+    </ion-button>
+    <ion-button
+      fill="outline"
+      size="small"
+      expand="block"
+      target="_blank"
+      rel="noopener noreferrer"
+      [href]="support().supportCustomerServiceUrl"
+    >
+      <ion-icon slot="start" name="headset" aria-hidden="true" />
+      Customer service
+    </ion-button>
+  </div>
+</section>

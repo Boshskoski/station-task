@@ -1,0 +1,17 @@
+<ion-searchbar
+  [id]="config.searchbarId"
+  type="search"
+  inputmode="search"
+  enterkeyhint="search"
+  placeholder="Search address"
+  aria-label="Search address"
+  [value]="searchStore.query()"
+  [debounce]="config.debounceMs"
+  (ionInput)="onInput($event)"
+  (ionClear)="searchStore.clear()"
+  (ionFocus)="searchStore.reopen()"
+  (click)="searchStore.reopen()"
+  (keydown.enter)="submit($event)"
+  (keydown.escape)="searchStore.closePanel()"
+/>
+<div [id]="config.triggerId"></div>

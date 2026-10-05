@@ -1,0 +1,29 @@
+ion-popover.non-modal-popover {
+  pointer-events: none;
+
+  &::part(backdrop) {
+    pointer-events: none;
+  }
+
+  &::part(content) {
+    pointer-events: auto;
+  }
+}
+
+ion-modal.auto-height-sheet {
+  --height: auto;
+  --border-radius: 1rem 1rem 0 0;
+
+  .ion-page {
+    position: relative;
+    contain: content;
+    max-height: calc(100dvh - var(--ion-safe-area-top, 0px) - 0.625rem);
+  }
+
+  .auto-height-sheet__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    background: var(--ion-background-color, #fff);
+  }
+}

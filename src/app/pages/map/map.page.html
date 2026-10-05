@@ -1,0 +1,117 @@
+<app-page-header heading="EV Charging Stations">
+  @if (viewport.isDesktop()) {
+    <app-address-search headerContent class="map-page__search" compact />
+  }
+  <app-toolbar-panel-button
+    headerActions
+    label="Favorites"
+    icon="heart"
+    countLabel="saved"
+    badgeColor="danger"
+    [triggerId]="favoritesTriggerId"
+    [count]="favoritesStore.count()"
+    [expanded]="mapPageStore.isPaneOpen('favorites')"
+    (pressed)="togglePane('favorites')"
+  />
+  <app-toolbar-panel-button
+    headerActions
+    label="Filters"
+    icon="funnel"
+    countLabel="active"
+    badgeColor="success"
+    [triggerId]="filtersTriggerId"
+    [count]="filtersStore.activeFilterCount()"
+    [expanded]="mapPageStore.isPaneOpen('filters')"
+    (pressed)="togglePane('filters')"
+  />
+  @if (!viewport.isDesktop()) {
+    <ion-toolbar>
+      <app-address-search />
+    </ion-toolbar>
+  }
+</app-page-header>
+
+<ion-content [scrollY]="false">
+  <app-station-map
+    [stations]="filteredStations()"
+    [searchPlace]="searchStore.selectedPlace()"
+    [userPosition]="locationStore.position()"
+    [focus]="mapPageStore.focus()"
+    [overlayInsets]="detailsLayout.insets()"
+    (stationSelected)="selectStation($event)"
+    (backgroundClicked)="closePanels()"
+  />
+
+  <app-locate-button slot="fixed" />
+
+  <app-map-status
+    slot="fixed"
+    [stationsStatus]="stationsStore.status()"
+    [stationCount]="stationsStore.stations().length"
+    [matchCount]="filteredStations().length"
+    [detailsLoading]="detailsStore.status() === 'loading'"
+    (retry)="stationsStore.reload()"
+    (clearFilters)="filtersStore.clearFilters()"
+  />
+
+  @defer (when detailsStore.selectedStationId() !== undefined; prefetch on idle) {
+    @if (viewport.isDesktop()) {
+      <app-station-details-desktop
+        slot="fixed"
+        [view]="detailsView()"
+        [favoriteStationIdSet]="favoritesStore.stationIdSet()"
+        [favoriteChargePoints]="favoritesStore.chargePoints()"
+        (stationFavoriteToggled)="favoritesStore.toggleStation($event)"
+        (chargePointFavoriteToggled)="toggleChargePointFavorite($event)"
+      />
+    } @else {
+      <app-station-details-mobile
+        [view]="detailsView()"
+        [favoriteStationIdSet]="favoritesStore.stationIdSet()"
+        [favoriteChargePoints]="favoritesStore.chargePoints()"
+        (stationFavoriteToggled)="favoritesStore.toggleStation($event)"
+        (chargePointFavoriteToggled)="toggleChargePointFavorite($event)"
+      />
+    }
+  }
+
+  @defer (when locationStore.error() !== undefined; prefetch on idle) {
+    <app-location-error-toast />
+  }
+
+  @defer (when searchStore.panelOpen(); prefetch on idle) {
+    <app-address-search-results />
+  }
+
+  @defer (when mapPageStore.isPaneOpen('favorites'); prefetch on idle) {
+    @if (viewport.isDesktop()) {
+      <app-favorites-desktop
+        [open]="mapPageStore.isPaneOpen('favorites')"
+        (openChange)="mapPageStore.setPaneOpen('favorites', $event)"
+        (stationSelected)="showStation($event)"
+      />
+    } @else {
+      <app-favorites-mobile
+        [open]="mapPageStore.isPaneOpen('favorites')"
+        (openChange)="mapPageStore.setPaneOpen('favorites', $event)"
+        (stationSelected)="showStation($event)"
+      />
+    }
+  }
+
+  @defer (when mapPageStore.isPaneOpen('filters'); prefetch on idle) {
+    @if (viewport.isDesktop()) {
+      <app-filters-desktop
+        [open]="mapPageStore.isPaneOpen('filters')"
+        [matchCount]="filteredStations().length"
+        (openChange)="mapPageStore.setPaneOpen('filters', $event)"
+      />
+    } @else {
+      <app-filters-mobile
+        [open]="mapPageStore.isPaneOpen('filters')"
+        [matchCount]="filteredStations().length"
+        (openChange)="mapPageStore.setPaneOpen('filters', $event)"
+      />
+    }
+  }
+</ion-content>

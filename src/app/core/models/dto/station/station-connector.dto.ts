@@ -1,0 +1,12 @@
+import { ConnectorIconName } from '@core/enums/station/connector-icon-name.enum';
+import { ConnectorType } from '@core/enums/station/connector-type.enum';
+import { CPConnectorTypeID } from '@core/enums/station/cp-connector-type-id.enum';
+
+export interface StationConnectorDto {
+  readonly Amount: number;
+  readonly Available: number;
+  readonly PK_CPConnectorTypeID: CPConnectorTypeID;
+  readonly Name: string;
+  readonly IconName: ConnectorIconName;
+  readonly ConnectorType: ConnectorType;
+}

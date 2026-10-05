@@ -1,0 +1,13 @@
+@if (view(); as shown) {
+  <aside #scroller class="side-panel" aria-label="Station details">
+    <app-station-details-content
+      [view]="shown"
+      [favoriteStationIdSet]="favoriteStationIdSet()"
+      [favoriteChargePoints]="favoriteChargePoints()"
+      (stationFavoriteToggled)="stationFavoriteToggled.emit($event)"
+      (chargePointFavoriteToggled)="chargePointFavoriteToggled.emit($event)"
+      (retry)="detailsStore.reload()"
+      (closed)="detailsStore.clearSelection()"
+    />
+  </aside>
+}

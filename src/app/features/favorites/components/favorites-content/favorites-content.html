@@ -1,0 +1,56 @@
+@if (groups().length === 0) {
+  <div class="favorites-note favorites-note--empty">
+    <p>No favorites yet.</p>
+    <p class="favorites-note__hint">
+      Tap the heart on a station or one of its charge points to keep it here.
+    </p>
+  </div>
+} @else {
+  @switch (stationsStore.status()) {
+    @case ('loading')
+    @case ('reloading') {
+      <div class="favorites-note" role="status">
+        <ion-spinner name="crescent" aria-hidden="true" />
+        <span>Loading stations…</span>
+      </div>
+    }
+    @case ('error') {
+      <div class="favorites-note" role="alert">
+        <span>Could not load stations.</span>
+        <ion-button size="small" fill="clear" (click)="stationsStore.reload()">Retry</ion-button>
+      </div>
+    }
+    @default {
+      <ion-list aria-label="Favorites" lines="full">
+        @for (group of groups(); track group.chargingStationId) {
+          @let station = group.station;
+          @let stationName = group | favoriteStationName;
+          <app-favorite-row
+            [title]="stationName"
+            [clickable]="station !== undefined"
+            (selected)="selectStation(station)"
+            (removed)="favoritesStore.toggleStation(group.chargingStationId)"
+          >
+            @if (station) {
+              {{ station.town }} · {{ station.availableBoxes }} of
+              {{ station.totalBoxes }} available
+            } @else {
+              No longer available
+            }
+          </app-favorite-row>
+          @for (connector of group.connectors; track connector.id) {
+            <app-favorite-row
+              connector
+              [title]="connector.name"
+              [clickable]="station !== undefined"
+              (selected)="selectStation(station)"
+              (removed)="favoritesStore.toggleConnector(group.chargingStationId, connector)"
+            >
+              {{ stationName }}
+            </app-favorite-row>
+          }
+        }
+      </ion-list>
+    }
+  }
+}

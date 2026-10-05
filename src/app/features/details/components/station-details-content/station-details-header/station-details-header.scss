@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-inline-end: 5.5rem;
+}
+
+.panel-header__logo {
+  flex: none;
+  border-radius: 0.625rem;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid color-mix(in srgb, var(--ion-text-color) 14%, transparent);
+}
+
+.panel-header__title {
+  flex: 1;
+  min-width: 0;
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 0.875rem;
+  }
+}
+
+.panel-address {
+  margin-top: 0.25rem;
+  color: var(--ion-color-medium);
+  font-size: 0.9rem;
+}
+
+.panel-directions {
+  margin: 0.5rem 0 0;
+  text-transform: none;
+}
+
+.panel-chips {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5rem -0.25rem 0;
+}

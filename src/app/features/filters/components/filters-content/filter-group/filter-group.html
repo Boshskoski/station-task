@@ -1,0 +1,14 @@
+<ion-list [attr.aria-label]="heading()">
+  <ion-list-header>{{ heading() }}</ion-list-header>
+  @for (option of options(); track option.value) {
+    <ion-item>
+      <ion-checkbox
+        justify="space-between"
+        [checked]="selected().includes(option.value)"
+        (ionChange)="toggle(option.value, $event.detail.checked)"
+      >
+        {{ option.label }}
+      </ion-checkbox>
+    </ion-item>
+  }
+</ion-list>

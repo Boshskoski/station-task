@@ -1,0 +1,29 @@
+<section aria-labelledby="availability-heading">
+  <h3 id="availability-heading">Availability</h3>
+  <dl class="counters">
+    <div class="counter counter--available">
+      <dt>Available</dt>
+      <dd>{{ station().availableBoxes }}</dd>
+    </div>
+    <div class="counter">
+      <dt>Occupied</dt>
+      <dd>{{ station().occupiedBoxes }}</dd>
+    </div>
+    <div class="counter">
+      <dt>Offline</dt>
+      <dd>{{ station().offlineBoxes }}</dd>
+    </div>
+    <div class="counter">
+      <dt>Total</dt>
+      <dd>{{ station().totalBoxes }}</dd>
+    </div>
+  </dl>
+  <ul class="connectors">
+    @for (connector of station().connectors; track connector.cpConnectorTypeId) {
+      <li>
+        <span>{{ connector.name }}</span>
+        <span class="muted">{{ connector.available }} / {{ connector.amount }} available</span>
+      </li>
+    }
+  </ul>
+</section>

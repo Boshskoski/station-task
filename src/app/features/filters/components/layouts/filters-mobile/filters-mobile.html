@@ -1,0 +1,31 @@
+<ion-modal
+  #modal
+  class="auto-height-sheet"
+  aria-labelledby="filters-title"
+  [isOpen]="open()"
+  [breakpoints]="[0, 1]"
+  [initialBreakpoint]="1"
+  (didDismiss)="open.set(false)"
+>
+  <ng-template>
+    <app-filters-header />
+
+    <div class="auto-height-sheet__body ion-content-scroll-host">
+      <app-filters-content />
+    </div>
+
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button class="filters-show" expand="block" (click)="modal.dismiss()">
+          <span aria-live="polite">
+            @if (matchCount() === 0) {
+              No matching stations
+            } @else {
+              Show {{ matchCount() | plural: 'station' }}
+            }
+          </span>
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+  </ng-template>
+</ion-modal>

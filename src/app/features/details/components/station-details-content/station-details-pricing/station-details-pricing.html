@@ -1,0 +1,11 @@
+<section aria-labelledby="pricing-heading">
+  <h3 id="pricing-heading">Pricing</h3>
+  <p class="pricing">
+    <strong>{{ pricing().chargingCostKWH | currency: pricing().currency }}</strong>
+    {{ pricing().typeCostCharging | costTypeLabel }}
+  </p>
+  <p class="muted">
+    Startup fee {{ pricing().startupCostPrice | currency: pricing().currency }} · VAT
+    {{ pricing().costPriceVATPercentage }}%
+  </p>
+</section>

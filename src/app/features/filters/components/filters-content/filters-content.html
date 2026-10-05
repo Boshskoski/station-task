@@ -1,0 +1,20 @@
+<app-filter-group
+  heading="Availability"
+  [options]="availabilityOptions"
+  [selected]="filtersStore.filters().availability"
+  (selectedChange)="filtersStore.setFilter('availability', $event)"
+/>
+<app-filter-group
+  heading="Opening"
+  [options]="openingOptions"
+  [selected]="filtersStore.filters().opening"
+  (selectedChange)="filtersStore.setFilter('opening', $event)"
+/>
+@if (connectorTypeOptions().length > 0) {
+  <app-filter-group
+    heading="Connector type"
+    [options]="connectorTypeOptions()"
+    [selected]="filtersStore.filters().connectorTypes"
+    (selectedChange)="filtersStore.setFilter('connectorTypes', $event)"
+  />
+}

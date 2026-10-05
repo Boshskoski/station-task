@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+.notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.75rem;
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, var(--ion-color-danger) 12%, transparent);
+  color: var(--ion-color-danger);
+  font-size: 0.875rem;
+}

@@ -1,0 +1,43 @@
+:host {
+  display: contents;
+}
+
+ion-title {
+  font-weight: 600;
+}
+
+.page-header__content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-header__title {
+  flex: none;
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  padding-inline-start: 1rem;
+  transform: none;
+}
+
+@media (width < 32.5rem) {
+  .page-header__title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+.page-header__icon {
+  margin-inline-start: 1rem;
+  padding: 0.375rem;
+  border-radius: 0.625rem;
+  background: var(--ion-color-success);
+  color: var(--ion-color-success-contrast);
+  font-size: 1.125rem;
+}

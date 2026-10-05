@@ -1,0 +1,5 @@
+@import '@ionic/angular/css/palettes/dark.class.css';
+
+:root {
+  --ion-text-color: #000000;
+}

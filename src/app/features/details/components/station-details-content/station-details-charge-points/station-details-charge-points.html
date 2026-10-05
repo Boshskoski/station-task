@@ -1,0 +1,52 @@
+<section aria-labelledby="charge-points-heading">
+  <h3 id="charge-points-heading">Charge points ({{ chargePoints().length }})</h3>
+  @if (chargePoints().length === 0) {
+    <p class="empty">No charge points are reported for this station.</p>
+  } @else {
+    <ul class="charge-points">
+      @for (point of chargePoints(); track point.chargePointId) {
+        @let favorite = favoriteIds().has(point.chargePointId);
+        <li class="charge-point">
+          <div class="charge-point__row">
+            <span class="charge-point__name">{{ point.name }}</span>
+            <ion-chip [color]="point.currentStatus | chargePointStatusColor">
+              {{ point.currentStatus }}
+            </ion-chip>
+            <ion-button
+              class="charge-point__favorite"
+              fill="clear"
+              size="small"
+              [color]="favorite ? 'danger' : 'medium'"
+              [attr.aria-pressed]="favorite"
+              [attr.aria-label]="point.name | favoriteLabel: favorite"
+              (click)="favoriteToggled.emit(point)"
+            >
+              <ion-icon
+                slot="icon-only"
+                [name]="favorite ? 'heart' : 'heart-outline'"
+                aria-hidden="true"
+              />
+            </ion-button>
+          </div>
+          <p class="muted">
+            @for (connector of point.connectorTypes; track connector.cpConnectorTypeId) {
+              {{ connector.name }} ·
+            }
+            {{ point.maxKW | number: '1.0-1' }} kW · {{ point.volts }} V · Code
+            {{ point.chargerCode }}
+          </p>
+          @if (!point.isActive || !point.isOpen) {
+            <div class="charge-point__flags">
+              @if (!point.isActive) {
+                <ion-chip color="medium">Inactive</ion-chip>
+              }
+              @if (!point.isOpen) {
+                <ion-chip color="medium">Closed</ion-chip>
+              }
+            </div>
+          }
+        </li>
+      }
+    </ul>
+  }
+</section>

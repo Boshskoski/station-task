@@ -1,0 +1,26 @@
+:host {
+  display: block;
+}
+
+.favorites-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  color: var(--ion-color-medium);
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.favorites-note--empty {
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.favorites-note__hint {
+  font-size: 0.875rem;
+}

@@ -1,0 +1,19 @@
+<ion-modal
+  #modal
+  class="auto-height-sheet"
+  aria-labelledby="favorites-title"
+  [isOpen]="open()"
+  [breakpoints]="[0, 1]"
+  [initialBreakpoint]="1"
+  (didDismiss)="open.set(false)"
+>
+  <ng-template>
+    <app-favorites-header>
+      <ion-button class="favorites-close" (click)="modal.dismiss()">Done</ion-button>
+    </app-favorites-header>
+
+    <div class="auto-height-sheet__body ion-content-scroll-host">
+      <app-favorites-content (stationSelected)="stationSelected.emit($event)" />
+    </div>
+  </ng-template>
+</ion-modal>

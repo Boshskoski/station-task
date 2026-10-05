@@ -1,0 +1,19 @@
+<ion-button
+  class="panel-favorite"
+  fill="clear"
+  [color]="favorite() ? 'danger' : 'medium'"
+  [attr.aria-pressed]="favorite()"
+  [attr.aria-label]="'station' | favoriteLabel: favorite()"
+  (click)="favoriteToggled.emit()"
+>
+  <ion-icon slot="icon-only" [name]="favorite() ? 'heart' : 'heart-outline'" aria-hidden="true" />
+</ion-button>
+<ion-button
+  class="panel-close"
+  fill="clear"
+  color="medium"
+  aria-label="Close station details"
+  (click)="closed.emit()"
+>
+  <ion-icon slot="icon-only" name="close" aria-hidden="true" />
+</ion-button>

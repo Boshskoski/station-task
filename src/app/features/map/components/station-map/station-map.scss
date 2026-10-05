@@ -1,0 +1,28 @@
+app-station-map, .station-map {
+  display: block;
+  height: 100%;
+}
+
+.station-map {
+  background: var(--ion-color-light);
+  font-family: var(--ion-font-family, sans-serif);
+}
+
+.station-map .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group {
+  margin: 0 1rem 1rem 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 0.125rem 0.75rem rgba(0, 0, 0, 0.18);
+}
+
+.station-map .maplibregl-ctrl-group button {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+@media (pointer: coarse) {
+  .station-map .maplibregl-ctrl-group button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}

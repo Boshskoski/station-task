@@ -1,0 +1,39 @@
+<header class="panel-header">
+  @if (station().operatorLogoUrl) {
+    <img
+      class="panel-header__logo"
+      [src]="station().operatorLogoUrl"
+      alt="{{ station().operatorName }} logo"
+      width="44"
+      height="44"
+    />
+  }
+  <div class="panel-header__title">
+    <h2>{{ station().name }}</h2>
+    <p>{{ station().operatorName }}</p>
+  </div>
+</header>
+
+<p class="panel-address">{{ station() | addressLine }}</p>
+<ion-button
+  class="panel-directions"
+  size="small"
+  fill="outline"
+  target="_blank"
+  rel="noopener noreferrer"
+  [href]="station() | directionsHref"
+>
+  <ion-icon slot="start" name="navigate" aria-hidden="true" />
+  Directions
+</ion-button>
+
+<div class="panel-chips">
+  <ion-chip [color]="station().isOpen ? 'success' : 'medium'">
+    {{ station().isOpen ? 'Open' : 'Closed' }}
+  </ion-chip>
+  <ion-chip [color]="station().isActive ? 'success' : 'medium'">
+    {{ station().isActive ? 'Active' : 'Inactive' }}
+  </ion-chip>
+  <ion-chip color="primary">{{ station().chargingStationType | stationTypeLabel }}</ion-chip>
+  <ion-chip color="medium">{{ station() | powerRange }}</ion-chip>
+</div>

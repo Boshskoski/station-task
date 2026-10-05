@@ -1,0 +1,21 @@
+<ion-popover
+  appNonModal
+  aria-labelledby="favorites-title"
+  side="bottom"
+  alignment="end"
+  [trigger]="triggerId"
+  [isOpen]="open()"
+  (didDismiss)="open.set(false)"
+>
+  <ng-template>
+    <app-favorites-header>
+      <ion-button class="favorites-close" aria-label="Close favorites" (click)="open.set(false)">
+        <ion-icon slot="icon-only" name="close" aria-hidden="true" />
+      </ion-button>
+    </app-favorites-header>
+
+    <ion-content>
+      <app-favorites-content (stationSelected)="stationSelected.emit($event)" />
+    </ion-content>
+  </ng-template>
+</ion-popover>
